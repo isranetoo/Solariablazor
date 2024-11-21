@@ -1,0 +1,132 @@
+﻿@model Solaria.Models.PosteDeLuz
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Poste de Luz Inteligente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h3 {
+            color: #007BFF;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        strong {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        form {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 8px;
+        }
+        .card-header {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .card-body {
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            Gestão de Poste de Luz Inteligente
+        </div>
+        <div class="card-body">
+            <p><strong>Energia Disponível:</strong> @Model.EnergiaDisponivel%</p>
+            <p><strong>Intensidade Atual:</strong> @Model.Intensidade%</p>
+            <p><strong>Presença Detectada:</strong> @(Model.PresencaDetectada ? "Sim" : "Não")</p>
+            <p><strong>Carga da Bateria Solar:</strong> @Model.CargaBateriaSolar%</p>
+            <p><strong>Última Manutenção:</strong> @Model.UltimaManutencao.ToString("dd/MM/yyyy HH:mm")</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Relatórios</div>
+        <div class="card-body">
+            <h4>Economia</h4>
+            <ul>
+                @foreach (var item in Model.RelatorioEconomia)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+
+            <h4>Manutenção e Alertas</h4>
+            <ul>
+                @foreach (var item in Model.RelatorioPreditivo)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- Formulários -->
+            <form method="post" asp-controller="PosteDeLuz" asp-action="AjusteInteligente">
+                <button type="submit">Ajuste Inteligente</button>
+            </form>
+
+            <form method="post" asp-controller="PosteDeLuz" asp-action="MonitoramentoBateria">
+                <button type="submit">Monitorar Bateria</button>
+            </form>
+
+            <form method="post" asp-controller="PosteDeLuz" asp-action="ManutencaoPreventiva">
+                <button type="submit">Manutenção Preventiva</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
