@@ -15,27 +15,31 @@ namespace Solaria.Controllers
 
         public IActionResult Index()
         {
+
             var posteDeLuz = _posteDeLuzService.ObterPosteDeLuz();
             return View(posteDeLuz);
         }
 
         [HttpPost]
-        public IActionResult AjusteInteligente()
+        public IActionResult AjusteInteligente(bool presencaDetectada)
         {
-            _posteDeLuzService.AjustarInteligente();
-            return RedirectToAction("Index");
+        
+            _posteDeLuzService.AjustarInteligente(presencaDetectada);
+            return RedirectToAction("Index"); 
         }
 
         [HttpPost]
-        public IActionResult MonitoramentoBateria()
+        public IActionResult MonitoramentoBateria(int cargaBateria)
         {
-            _posteDeLuzService.MonitorarBateria();
-            return RedirectToAction("Index");
+          
+            _posteDeLuzService.MonitorarBateria(cargaBateria);
+            return RedirectToAction("Index"); 
         }
 
         [HttpPost]
         public IActionResult ManutencaoPreventiva()
         {
+         
             _posteDeLuzService.RealizarManutencao();
             return RedirectToAction("Index");
         }

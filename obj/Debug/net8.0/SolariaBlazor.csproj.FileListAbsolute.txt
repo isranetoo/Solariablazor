@@ -101,3 +101,4 @@ C:\Users\techc\OneDrive\Desktop\solariablazor\obj\Debug\net8.0\refint\SolariaBla
 C:\Users\techc\OneDrive\Desktop\solariablazor\obj\Debug\net8.0\SolariaBlazor.pdb
 C:\Users\techc\OneDrive\Desktop\solariablazor\obj\Debug\net8.0\SolariaBlazor.genruntimeconfig.cache
 C:\Users\techc\OneDrive\Desktop\solariablazor\obj\Debug\net8.0\ref\SolariaBlazor.dll
+C:\Users\techc\OneDrive\Desktop\solariablazor\obj\Debug\net8.0\SolariaBlazor.sourcelink.json

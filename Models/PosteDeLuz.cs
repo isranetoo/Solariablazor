@@ -16,7 +16,6 @@ namespace Solaria.Models
         public List<string> RelatorioEconomia { get; set; } = new List<string>();
         public List<string> RelatorioPreditivo { get; set; } = new List<string>();
         
-        // Constructor
         public PosteDeLuz()
         {
             RelatorioEconomia = new List<string>();

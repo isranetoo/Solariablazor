@@ -19,48 +19,44 @@ namespace Solaria.Services
             RelatorioPreditivo = new List<string>()
         };
 
-        // Obtém o estado atual do poste de luz
         public PosteDeLuz ObterPosteDeLuz()
         {
             return _posteDeLuz;
         }
 
-        // Ajusta a iluminação com base na presença detectada
-        public void AjustarInteligente()
+        public void AjustarInteligente(bool presencaDetectada)
         {
+            _posteDeLuz.SensorPresenca = presencaDetectada;
+
             if (_posteDeLuz.SensorPresenca)
             {
                 _posteDeLuz.PresencaDetectada = true;
-                _posteDeLuz.Intensidade = 100; // Iluminação máxima
-                _posteDeLuz.EconomiaEnergia = 0; // Nenhuma economia quando a intensidade está no máximo
+                _posteDeLuz.Intensidade = 100; 
+                _posteDeLuz.EconomiaEnergia = 0; 
             }
             else
             {
                 _posteDeLuz.PresencaDetectada = false;
-                _posteDeLuz.Intensidade = 30; // Iluminação reduzida
-                _posteDeLuz.EconomiaEnergia = 50; // Economia de 50% quando a intensidade é reduzida
+                _posteDeLuz.Intensidade = 30; 
+                _posteDeLuz.EconomiaEnergia = 50; 
             }
 
-            // Adiciona ao relatório de economia
             _posteDeLuz.RelatorioEconomia.Add($"Ajuste Inteligente: {DateTime.Now} - Intensidade: {_posteDeLuz.Intensidade}% - Economia: {_posteDeLuz.EconomiaEnergia}%");
         }
 
-        // Monitora a carga da bateria solar
-        public void MonitorarBateria()
+        public void MonitorarBateria(int cargaBateria)
         {
-            _posteDeLuz.CargaBateriaSolar = Math.Max(0, _posteDeLuz.CargaBateriaSolar - 10); // Simula a diminuição da carga da bateria
+            _posteDeLuz.CargaBateriaSolar = cargaBateria; 
 
-            // Se a carga da bateria ficar abaixo de 20%, gera um alerta
             if (_posteDeLuz.CargaBateriaSolar < 20)
             {
                 _posteDeLuz.RelatorioPreditivo.Add($"Alerta Bateria Baixa: {DateTime.Now} - Carga: {_posteDeLuz.CargaBateriaSolar}%");
             }
         }
 
-        // Realiza a manutenção preventiva do poste de luz
         public void RealizarManutencao()
         {
-            _posteDeLuz.UltimaManutencao = DateTime.Now; // Atualiza a data da última manutenção
+            _posteDeLuz.UltimaManutencao = DateTime.Now; 
             _posteDeLuz.RelatorioPreditivo.Add($"Manutenção Preventiva Realizada: {_posteDeLuz.UltimaManutencao}");
         }
     }
